@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup/Login</title>
+    <!-- Bootstrap CSS link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #0D1B2A;  /* Dark background color */
+            color: #EAEAEA;             /* Light gray text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #1D2A3A;  /* Darker background for the form */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        .form-title {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .form-group label {
+            color: #B0BEC5;  /* Lighter gray labels */
+        }
+        .form-control {
+            background-color: #2C3E50; /* Dark form input background */
+            color: #EAEAEA;             /* Light text inside input */
+            border: 1px solid #34495E;  /* Dark border */
+            border-radius: 5px;
+        }
+        .form-control:focus {
+            background-color: #34495E;  /* Slightly lighter input background on focus */
+            border-color: #16A085;       /* Greenish border color on focus */
+            color: #ffffff;
+        }
+        .btn-primary {
+            background-color: #1ABC9C;   /* Greenish background for buttons */
+            border-color: #1ABC9C;       /* Same border color */
+            border-radius: 5px;
+            padding: 12px;
+        }
+        .btn-primary:hover {
+            background-color: #16A085;   /* Darker shade on hover */
+            border-color: #16A085;
+        }
+        .social-btn {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: white;
+        }
+        .social-btn-google {
+            background-color: #DB4437; /* Google red */
+            border-color: #DB4437;
+        }
+        .social-btn-facebook {
+            background-color: #3B5998; /* Facebook blue */
+            border-color: #3B5998;
+        }
+        .text-center a {
+            color: #1ABC9C; /* Accent color for links */
+            text-decoration: none;
+        }
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+        .footer-text {
+            color: #B0BEC5;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        .hr-style {
+            border-top: 1px solid #34495E;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <!-- Signup Form -->
+    <div id="signup-form">
+        <h3 class="form-title">Sign Up</h3>
+        <form action="/signup" method="POST">
+            <!-- Email -->
+            <div class="form-group">
+                <label for="signup-email">Email address</label>
+                <input type="email" class="form-control" id="signup-email" placeholder="Enter email" required>
+            </div>
+            <!-- Password -->
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input type="password" class="form-control" id="signup-password" placeholder="Password" required>
+            </div>
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <label for="signup-confirm-password">Confirm Password</label>
+                <input type="password" class="form-control" id="signup-confirm-password" placeholder="Confirm Password" required>
+            </div>
+            <!-- Signup Button -->
+            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+        </form>
+        
+        <hr class="hr-style">
+        <!-- Social Media Signup -->
+        <button class="btn social-btn social-btn-google">Sign up with Google</button>
+        <button class="btn social-btn social-btn-facebook">Sign up with Facebook</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login-form" style="display: none;">
+        <h3 class="form-title">Login</h3>
+        <form action="/login" method="POST">
+            <!-- Email -->
+            <div class="form-group">
+                <label for="login-email">Email address</label>
+                <input type="email" class="form-control" id="login-email" placeholder="Enter email" required>
+            </div>
+            <!-- Password -->
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" class="form-control" id="login-password" placeholder="Password" required>
+            </div>
+            <!-- Login Button -->
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+
+        <hr class="hr-style">
+        <!-- Social Media Login -->
+        <button class="btn social-btn social-btn-google">Login with Google</button>
+        <button class="btn social-btn social-btn-facebook">Login with Facebook</button>
+
+        <!-- Forgot Password -->
+        <div class="text-center mt-3">
+            <a href="#">Forgot password?</a>
+        </div>
+    </div>
+
+    <!-- Toggle Forms (Signup/Login) -->
+    <div class="text-center mt-3">
+        <p id="toggle-message">Already have an account? <a href="#" onclick="toggleForms()">Login here</a></p>
+    </div>
+</div>
+
+<!-- Footer Text -->
+<div class="text-center footer-text">
+    <p>&copy; 2024 Your Website. All Rights Reserved.</p>
+</div>
+
+<!-- JavaScript to toggle between Signup and Login forms -->
+<script>
+    function toggleForms() {
+        var signupForm = document.getElementById('signup-form');
+        var loginForm = document.getElementById('login-form');
+        var toggleMessage = document.getElementById('toggle-message');
+
+        if (signupForm.style.display === "none") {
+            signupForm.style.display = "block";
+            loginForm.style.display = "none";
+            toggleMessage.innerHTML = 'Already have an account? <a href="#" onclick="toggleForms()">Login here</a>';
+        } else {
+            signupForm.style.display = "none";
+            loginForm.style.display = "block";
+            toggleMessage.innerHTML = 'Don\'t have an account? <a href="#" onclick="toggleForms()">Sign up here</a>';
+        }
+    }
+</script>
+
+</body>
+</html>

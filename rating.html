@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rate Your Experience</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0D1B2A;  /* Dark background */
+      color: #EAEAEA;             /* Light gray text */
+      font-family: 'Arial', sans-serif;
+    }
+
+    .navbar {
+      background-color: #1E2A37;
+    }
+
+    .navbar-brand {
+      color: #FFD700;              /* Gold color for the brand name */
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    .navbar-nav .nav-link {
+      color: #EAEAEA;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #FFD700;
+    }
+
+    .rating-section {
+      margin-top: 50px;
+      padding: 30px;
+      background-color: #1E2A37;
+      border-radius: 8px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .rating-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .rating-stars {
+      font-size: 2rem;
+      color: #FFD700;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .rating-stars i {
+      cursor: pointer;
+    }
+
+    .rating-stars i:hover,
+    .rating-stars i.selected {
+      color: #e1c82e;
+    }
+
+    .feedback-text {
+      margin-top: 20px;
+    }
+
+    .feedback-text textarea {
+      background-color: #34495E;
+      border: 1px solid #FFD700;
+      color: #FFD700;
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .submit-btn {
+      background-color: #FFD700;
+      border: none;
+      color: #0D1B2A;
+      font-size: 1.25rem;
+      padding: 12px 30px;
+      border-radius: 8px;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .submit-btn:hover {
+      background-color: #e1c82e;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">DealFinder</a>
+  </div>
+</nav>
+
+<!-- Rating Section -->
+<div class="container rating-section">
+  <h3 class="rating-header">Rate Your Experience</h3>
+
+  <!-- Star Rating System -->
+  <div class="rating-stars">
+    <i class="bi bi-star" data-value="1"></i>
+    <i class="bi bi-star" data-value="2"></i>
+    <i class="bi bi-star" data-value="3"></i>
+    <i class="bi bi-star" data-value="4"></i>
+    <i class="bi bi-star" data-value="5"></i>
+  </div>
+
+  <!-- Feedback Text Area -->
+  <div class="feedback-text">
+    <textarea rows="4" placeholder="Write your feedback here..."></textarea>
+  </div>
+
+  <!-- Submit Button -->
+  <button class="submit-btn">Submit Review</button>
+</div>
+
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Star Rating Functionality
+  const stars = document.querySelectorAll('.rating-stars i');
+  let selectedRating = 0;
+
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      selectedRating = star.getAttribute('data-value');
+      updateStarSelection();
+    });
+  });
+
+  function updateStarSelection() {
+    stars.forEach(star => {
+      if (star.getAttribute('data-value') <= selectedRating) {
+        star.classList.add('selected');
+      } else {
+        star.classList.remove('selected');
+      }
+    });
+  }
+
+  // Handle submit button click
+  document.querySelector('.submit-btn').addEventListener('click', function() {
+    const feedback = document.querySelector('.feedback-text textarea').value;
+
+    if (selectedRating === 0) {
+      alert('Please select a rating!');
+      return;
+    }
+
+    alert(`Thank you for your review!\nRating: ${selectedRating} Stars\nFeedback: ${feedback}`);
+  });
+</script>
+
+</body>
+</html>

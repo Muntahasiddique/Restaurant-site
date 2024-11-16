@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location Select</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* General body styles */
+    body {
+      background-color: #0D1B2A;  /* Dark background */
+      color: #EAEAEA;             /* Light gray text */
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      background-color: #1E2A37;
+    }
+
+    .navbar-brand {
+      color: #FFD700;              /* Gold color for the brand name */
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    .navbar-nav .nav-link {
+      color: #EAEAEA;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #FFD700;
+    }
+
+    /* Container styling for the location select section */
+    .location-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    .location-container h3 {
+      color: #FFD700;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    /* Location Card */
+    .location-card {
+      background-color: #1E2A37;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .location-card input, .location-card button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+
+    .location-card input {
+      background-color: #34495E;
+      color: #EAEAEA;
+      border: 1px solid #34495E;
+    }
+
+    .location-card button {
+      background-color: #FFD700;
+      border: 1px solid #FFD700;
+      color: #0D1B2A;
+      font-weight: bold;
+    }
+
+    .location-card button:hover {
+      background-color: #F39C12;
+      border-color: #F39C12;
+    }
+
+    /* Smooth transition for location input */
+    .location-card input:focus {
+      border-color: #FFD700;
+      outline: none;
+    }
+
+    /* GPS detection message */
+    .location-message {
+      font-size: 1.2rem;
+      color: #EAEAEA;
+      margin-top: 20px;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">DealFinder</a>
+  </div>
+</nav>
+
+<!-- Main container -->
+<div class="location-container">
+  <h3>Select Your Location</h3>
+  
+  <!-- Location Card -->
+  <div class="location-card">
+    <!-- GPS Detection -->
+    <div class="gps-detection">
+      <p class="location-message" id="gpsMessage">Detecting your location...</p>
+      <button class="btn btn-primary" id="useGpsBtn">Use Detected Location</button>
+    </div>
+
+    <!-- Manual Search -->
+    <div class="manual-search" style="display: none;">
+      <input type="text" id="citySearch" class="form-control" placeholder="Search for your city" list="citySuggestions">
+      <datalist id="citySuggestions">
+        <option value="New York">
+        <option value="Los Angeles">
+        <option value="Chicago">
+        <option value="San Francisco">
+        <option value="Miami">
+      </datalist>
+      <button class="btn btn-primary" id="searchBtn">Search</button>
+    </div>
+  </div>
+</div>
+
+<!-- Include Bootstrap JS, jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Function to detect the user's location using the Geolocation API
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const city = getCityFromCoordinates(position.coords.latitude, position.coords.longitude);
+      document.getElementById('gpsMessage').textContent = "Your detected location: " + city;
+      document.getElementById('useGpsBtn').style.display = 'inline-block';
+      document.getElementById('useGpsBtn').addEventListener('click', function() {
+        alert("Location selected: " + city);
+      });
+    }, function() {
+      document.getElementById('gpsMessage').textContent = "Unable to detect location. Please search manually.";
+      document.querySelector('.manual-search').style.display = 'block';
+    });
+  } else {
+    document.getElementById('gpsMessage').textContent = "Geolocation is not supported by this browser.";
+    document.querySelector('.manual-search').style.display = 'block';
+  }
+
+  // Simulated function to get city from coordinates (could use an API for real functionality)
+  function getCityFromCoordinates(lat, lon) {
+    // In reality, use an API to get the city, e.g., reverse geocoding
+    return "New York"; // Placeholder for demo purposes
+  }
+
+  // Manual search functionality
+  document.getElementById('searchBtn').addEventListener('click', function() {
+    const city = document.getElementById('citySearch').value;
+    alert("Manual location selected: " + city);
+  });
+</script>
+
+</body>
+</html>

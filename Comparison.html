@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparison - Deals</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Include jQuery and Bootstrap Slider CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-slider@10.6.2/dist/css/bootstrap-slider.min.css" rel="stylesheet">
+  <style>
+    /* General body styles */
+    body {
+      background-color: #0D1B2A;  /* Dark background */
+      color: #EAEAEA;             /* Light gray text */
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      background-color: #1E2A37;
+    }
+
+    .navbar-brand {
+      color: #FFD700;              /* Gold color for the brand name */
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    .navbar-nav .nav-link {
+      color: #EAEAEA;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #FFD700;
+    }
+
+    /* Filter panel */
+    .filter-panel {
+      background-color: #1E2A37;  /* Darker background for the filter panel */
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .filter-panel h4 {
+      color: #FFD700;             /* Gold color for the section title */
+      font-weight: bold;
+    }
+
+    /* Deal cards */
+    .deal-card {
+      transition: transform 0.3s ease-in-out;
+      background-color: #34495E;  /* Dark gray background for the card */
+      color: #EAEAEA;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .deal-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .deal-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .deal-price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #FFD700;
+    }
+
+    /* Button styling */
+    .btn-primary {
+      background-color: #FFD700;
+      border-color: #FFD700;
+      border-radius: 5px;
+    }
+
+    .btn-primary:hover {
+      background-color: #F39C12;
+      border-color: #F39C12;
+    }
+
+    /* Price Range */
+    #priceRangeValue {
+      font-size: 1.2rem;
+      color: #FFD700;
+    }
+
+    /* Form styles */
+    .form-select, .slider {
+      background-color: #34495E;
+      color: #EAEAEA;
+      border-radius: 5px;
+      border: none;
+    }
+
+    /* Card Grid Styling */
+    .deal-card .card-body {
+      padding: 20px;
+    }
+
+    /* Spacing for Deal Results */
+    .deal-results {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    .deal-results .col-md-4 {
+      flex: 1 1 30%;
+    }
+    
+    .form-select option {
+      background-color: #34495E;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">DealFinder</a>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- Filter Panel -->
+    <div class="col-md-3 mb-4 filter-panel">
+      <h4>Filter Deals</h4>
+
+      <!-- Price Range Filter -->
+      <div class="mb-4">
+        <label for="priceRange" class="form-label">Price Range</label>
+        <input id="priceRange" type="text" class="slider" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="[20,60]" />
+        <p id="priceRangeValue">Price: $20 - $60</p>
+      </div>
+
+      <!-- Food Type Filter -->
+      <div class="mb-4">
+        <label for="foodType" class="form-label">Food Type</label>
+        <select class="form-select" id="foodType" multiple>
+          <option value="vegan">Vegan</option>
+          <option value="pizza">Pizza</option>
+          <option value="sushi">Sushi</option>
+          <option value="burger">Burger</option>
+        </select>
+      </div>
+
+      <!-- Apply Filters Button -->
+      <button class="btn btn-primary w-100">Apply Filters</button>
+    </div>
+
+    <!-- Deal Results -->
+    <div class="col-md-9">
+      <h4>Filtered Deals</h4>
+      <div class="deal-results" id="dealResults">
+        <!-- Example Deal Cards -->
+        <div class="col-md-4 mb-4">
+          <div class="card deal-card">
+            <img src="images/coparefood.jpeg" class="card-img-top deal-img" alt="Deal 1">
+            <div class="card-body">
+              <h5 class="card-title">Deal 1</h5>
+              <p class="card-text">Delicious pizza with an extra cheese topping.</p>
+              <p class="deal-price">$30</p>
+              <a href="#" class="btn btn-primary">Order Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="card deal-card">
+            <img src="images/coparefood.jpeg" class="card-img-top deal-img" alt="Deal 2">
+            <div class="card-body">
+              <h5 class="card-title">Deal 2</h5>
+              <p class="card-text">Fresh vegan sushi with organic ingredients.</p>
+              <p class="deal-price">$25</p>
+              <a href="#" class="btn btn-primary">Order Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="card deal-card">
+            <img src="images/coparefood.jpeg" class="card-img-top deal-img" alt="Deal 3">
+            <div class="card-body">
+              <h5 class="card-title">Deal 3</h5>
+              <p class="card-text">Hearty burger with crispy fries.</p>
+              <p class="deal-price">$18</p>
+              <a href="#" class="btn btn-primary">Order Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include Bootstrap JS, jQuery, and Bootstrap Slider JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-slider@10.6.2/dist/bootstrap-slider.min.js"></script>
+<script>
+  // Initialize the price range slider
+  var priceSlider = new Slider('#priceRange', {
+    formatter: function(value) {
+      var priceRange = value.split(',');
+      document.getElementById('priceRangeValue').textContent = 'Price: $' + priceRange[0] + ' - $' + priceRange[1];
+    }
+  });
+
+  // Handle filter button click
+  document.querySelector('.btn-primary').addEventListener('click', function() {
+    // Capture selected food types
+    var selectedFoodTypes = Array.from(document.getElementById('foodType').selectedOptions)
+      .map(option => option.value);
+
+    var priceRange = priceSlider.getValue().split(',');
+    alert('Filters Applied!\nFood Types: ' + selectedFoodTypes.join(', ') + '\nPrice Range: $' + priceRange[0] + ' - $' + priceRange[1]);
+    
+    // You can now dynamically fetch and filter the deals based on selected criteria
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Finder</title>
+    <!-- Google Font for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional: Add your custom CSS for styling -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #0D1B2A 0%, #1D2D44 100%);
+            color: #EAEAEA;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1D2D44;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFD700;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E7C100;
+        }
+
+        .navbar {
+            background-color: #1D2D44;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #E7C100;
+        }
+
+        .container {
+            margin-top: 40px;
+        }
+
+        .restaurant-card {
+            margin-bottom: 25px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            background-color: #263B54;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .restaurant-card .card-img-top {
+            transition: transform 0.3s ease;
+            object-fit: cover;
+            height: 200px;
+        }
+
+        .restaurant-card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+
+        .restaurant-card .card-body {
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .restaurant-card .card-title {
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        .restaurant-card .card-text {
+            color: #B0B0B0;
+        }
+
+        .restaurant-card .btn-primary {
+            background-color: #FFD700;
+            border-color: #FFD700;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .restaurant-card .btn-primary:hover {
+            background-color: #E7C100;
+            border-color: #E7C100;
+        }
+
+        /* Smooth Select Box */
+        select {
+            background-color: #1D2D44;
+            color: #EAEAEA;
+            border: 1px solid #FFD700;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+            width: 100%;
+        }
+
+        select:focus {
+            background-color: #1D2D44;
+            border-color: #FFD700;
+            color: #EAEAEA;
+        }
+
+        select:hover {
+            background-color: #263B54;
+        }
+
+        h3, h5 {
+            color: #FFD700;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .card-img-top {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .container h3, .container h5 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styling */
+        .form-select {
+            background-color: #263B54;
+            border: 1px solid #FFD700;
+            color: #EAEAEA;
+            border-radius: 5px;
+            padding: 12px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .form-select:hover {
+            background-color: #1D2D44;
+        }
+
+        .form-select:focus {
+            border-color: #FFD700;
+            background-color: #263B54;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .restaurant-card {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Restaurant Finder</a>
+    </div>
+</nav>
+
+<!-- City Selection (GPS or Manual) -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h3>Select City</h3>
+            <!-- Dropdown for City Selection -->
+            <select class="form-select" id="citySelect">
+                <option value="0">Select City</option>
+                <option value="1">New York</option>
+                <option value="2">Los Angeles</option>
+                <option value="3">San Francisco</option>
+                <option value="4">Chicago</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Filters (Cuisine Type, Price Range) -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <h5>Cuisine Type</h5>
+            <select class="form-select" id="cuisineType">
+                <option value="0">All Cuisines</option>
+                <option value="1">Italian</option>
+                <option value="2">Chinese</option>
+                <option value="3">Indian</option>
+                <option value="4">Mexican</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <h5>Price Range</h5>
+            <select class="form-select" id="priceRange">
+                <option value="0">Any Price</option>
+                <option value="1">Under $20</option>
+                <option value="2">$20 - $50</option>
+                <option value="3">Above $50</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Spinner -->
+<div class="loading-spinner">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<!-- Restaurant List -->
+<div class="container mt-4">
+    <div class="row" id="restaurantList">
+        <!-- Restaurant Cards will be loaded here dynamically -->
+    </div>
+</div>
+
+<!-- Bootstrap JS and Dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+
+<script>
+    // Sample data for demonstration purposes
+    const restaurantData = {
+        "1": [
+            { "name": "Mario's Italian Bistro", "image": "https://via.placeholder.com/300x200", "description": "Authentic Italian cuisine.", "deal": "20% off pizza", "city": "1" },
+            { "name": "China Town", "image": "https://via.placeholder.com/300x200", "description": "Delicious Chinese dishes.", "deal": "Free delivery", "city": "1" }
+        ],
+        "2": [
+            { "name": "LA Grill", "image": "https://via.placeholder.com/300x200", "description": "Great American BBQ.", "deal": "Buy 1 get 1 free", "city": "2" }
+        ]
+    };
+
+    // Function to display restaurants
+    function displayRestaurants(cityId) {
+        const restaurantList = document.getElementById('restaurantList');
+        const spinner = document.querySelector('.loading-spinner');
+        
+        spinner.style.display = 'block';  // Show loading spinner
+        
+        // Simulate fetching data with a delay
+        setTimeout(() => {
+            restaurantList.innerHTML = ''; // Clear previous results
+            const restaurants = restaurantData[cityId] || [];
+            
+            // Hide loading spinner
+            spinner.style.display = 'none';
+            
+            if (restaurants.length > 0) {
+                restaurants.forEach(restaurant => {
+                    const card = `
+                        <div class="col-md-4">
+                            <div class="card restaurant-card">
+                                <img src="${restaurant.image}" class="card-img-top" alt="${restaurant.name}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${restaurant.name}</h5>
+                                    <p class="card-text">${restaurant.description}</p>
+                                    <p><strong>Featured Deal:</strong> ${restaurant.deal}</p>
+                                    <a href="#" class="btn btn-primary">See More</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    restaurantList.innerHTML += card;
+                });
+            } else {
+                restaurantList.innerHTML = `<p>No restaurants found for this city.</p>`;
+            }
+        }, 1500); // Simulate a delay for loading
+    }
+
+    // Event listeners for city selection
+    document.getElementById('citySelect').addEventListener('change', function() {
+        const cityId = this.value;
+        if (cityId !== '0') {
+            displayRestaurants(cityId);
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment History</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0D1B2A;  /* Dark background */
+      color: #EAEAEA;             /* Light gray text */
+      font-family: 'Arial', sans-serif;
+    }
+
+    .navbar {
+      background-color: #1E2A37;
+    }
+
+    .navbar-brand {
+      color: #FFD700;              /* Gold color for the brand name */
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    .navbar-nav .nav-link {
+      color: #EAEAEA;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #FFD700;
+    }
+
+    .container {
+      margin-top: 30px;
+    }
+
+    .payment-history-section {
+      background-color: #1E2A37;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .table {
+      background-color: #34495E;
+      border-radius: 8px;
+      color: #EAEAEA;
+    }
+
+    .table th, .table td {
+      text-align: center;
+    }
+
+    .table thead {
+      background-color: #FFD700;
+      color: #1E2A37;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: #2C3E50;
+    }
+
+    .search-box {
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background-color: #FFD700;
+      border: none;
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .btn-primary:hover {
+      background-color: #e1c82e;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">DealFinder</a>
+  </div>
+</nav>
+
+<!-- Payment History Section -->
+<div class="container">
+  <div class="payment-history-section">
+    <h3 class="mb-4">Payment History</h3>
+    
+    <!-- Search Box -->
+    <div class="d-flex justify-content-between search-box">
+      <input type="text" class="form-control" id="search-input" placeholder="Search by transaction ID">
+      <button class="btn btn-primary" id="search-btn">Search</button>
+    </div>
+
+    <!-- Payment Table -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Transaction ID</th>
+          <th scope="col">Date</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Payment Method</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody id="transaction-table-body">
+        <!-- Transaction records will go here -->
+        <tr>
+          <td>#12345</td>
+          <td>2024-11-10</td>
+          <td>$50.00</td>
+          <td>Credit Card</td>
+          <td>Completed</td>
+        </tr>
+        <tr>
+          <td>#12346</td>
+          <td>2024-11-12</td>
+          <td>$25.00</td>
+          <td>PayPal</td>
+          <td>Pending</td>
+        </tr>
+        <tr>
+          <td>#12347</td>
+          <td>2024-11-15</td>
+          <td>$75.00</td>
+          <td>Google Pay</td>
+          <td>Completed</td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Basic search functionality for filtering transaction IDs
+  $('#search-btn').click(function() {
+    const searchTerm = $('#search-input').val().toLowerCase();
+    $('#transaction-table-body tr').each(function() {
+      const transactionId = $(this).find('td').first().text().toLowerCase();
+      if (transactionId.includes(searchTerm)) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

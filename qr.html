@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Scanner</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.18.5/dist/index.min.js"></script>
+  <style>
+    body {
+      background-color: #0D1B2A;  /* Dark background */
+      color: #EAEAEA;             /* Light gray text */
+      font-family: 'Arial', sans-serif;
+    }
+
+    .navbar {
+      background-color: #1E2A37;
+    }
+
+    .navbar-brand {
+      color: #FFD700;              /* Gold color for the brand name */
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    .navbar-nav .nav-link {
+      color: #EAEAEA;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #FFD700;
+    }
+
+    .scanner-container {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      background-color: #34495E;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+    }
+
+    .scanner-overlay {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      right: 10%;
+      bottom: 10%;
+      border: 3px dashed #FFD700;
+      border-radius: 5px;
+    }
+
+    .scanner-instructions {
+      font-size: 1.5rem;
+      color: #FFD700;
+      position: absolute;
+      top: 10%;
+      width: 100%;
+      text-align: center;
+    }
+
+    .start-ordering-btn {
+      margin-top: 20px;
+      background-color: #FFD700;
+      border: none;
+      color: #0D1B2A;
+      font-size: 1.2rem;
+      padding: 12px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .start-ordering-btn:hover {
+      background-color: #e1c82e;
+    }
+
+    .menu-section {
+      background-color: #34495E;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .menu-item {
+      background-color: #1E2A37;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.05);
+    }
+
+    .menu-item-name {
+      color: #FFD700;
+      font-weight: bold;
+    }
+
+    .menu-item-price {
+      color: #EAEAEA;
+    }
+
+    .menu-item-description {
+      color: #EAEAEA;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .scanner-container {
+        height: 60vh;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">DealFinder</a>
+  </div>
+</nav>
+
+<!-- QR Code Scanner Section -->
+<div class="container">
+  <div class="scanner-container">
+    <video id="scanner" width="100%" height="100%" style="border-radius: 10px;"></video>
+    <div class="scanner-overlay"></div>
+    <div class="scanner-instructions">
+      <p>Scan the QR code to view the menu</p>
+    </div>
+  </div>
+
+  <!-- Start Ordering Button -->
+  <button class="start-ordering-btn" id="startOrderingBtn">Start Ordering</button>
+
+  <!-- Menu Section (Visible after QR scan) -->
+  <div class="menu-section" id="menuSection" style="display: none;">
+    <h3 style="color: #FFD700;">Restaurant Menu</h3>
+    <div class="row" id="menuItems">
+      <!-- Example menu items (dynamically filled after scan) -->
+      <div class="col-md-4">
+        <div class="menu-item">
+          <h5 class="menu-item-name">Pizza Margherita</h5>
+          <p class="menu-item-description">Classic Italian pizza with fresh mozzarella, basil, and tomato sauce.</p>
+          <p class="menu-item-price">$15</p>
+          <button class="btn btn-primary">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="menu-item">
+          <h5 class="menu-item-name">Vegan Burger</h5>
+          <p class="menu-item-description">A delicious plant-based burger with all the right toppings.</p>
+          <p class="menu-item-price">$12</p>
+          <button class="btn btn-primary">Add to Cart</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="menu-item">
+          <h5 class="menu-item-name">Pasta Primavera</h5>
+          <p class="menu-item-description">Pasta with seasonal vegetables in a light garlic sauce.</p>
+          <p class="menu-item-price">$14</p>
+          <button class="btn btn-primary">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include Bootstrap JS and ZXing QR Scanner Library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Initialize ZXing QR Code scanner
+  const codeReader = new ZXing.BrowserQRCodeReader();
+
+  const videoElement = document.getElementById("scanner");
+
+  // Start the QR Code scanner
+  codeReader
+    .decodeFromVideoDevice(null, videoElement)
+    .then(result => {
+      console.log(result);
+      // Show menu section after QR code scan
+      document.getElementById("menuSection").style.display = "block";
+      document.getElementById("scanner").style.display = "none"; // Hide the scanner after scanning
+      document.getElementById("startOrderingBtn").style.display = "none"; // Hide the Start Ordering button
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
+  // Handle "Start Ordering" button click
+  document.getElementById("startOrderingBtn").addEventListener("click", function() {
+    alert("Please scan a QR code to start ordering!");
+  });
+</script>
+
+</body>
+</html>

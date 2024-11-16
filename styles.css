@@ -206,4 +206,285 @@ body {
     background-color: #FFD700; /* Gold background on hover */
     font-size: 17px;          /* Slight increase in font size on hover */
   }
+  /* Global Styles */
+body {
+    background-color: #0d1b2a;
+    color: #eaeaea;
+    font-family: 'Nunito', sans-serif;
+  }
   
+  /* Top Info Bar */
+  .top-info-bar {
+    background-color: #1c1c1c;
+    color: #eaeaea;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
+  
+  .contact-info {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .social-link {
+    color: #eaeaea;
+    border: 1px solid #ffd700;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    transition: all 0.3s;
+  }
+  
+  .social-link:hover {
+    background-color: #ffd700;
+    color: #1c1c1c;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: transparent;
+  }
+  
+  .navbar-brand {
+    color: #ffd700;
+    font-size: 1.8rem;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #eaeaea;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #ffd700;
+  }
+  
+  .navbar-toggler {
+    border-color: #ffd700;
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 215, 0, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .search-input {
+    padding: 0.4rem;
+    border-radius: 5px;
+    border: 1px solid #ffd700;
+    background-color: #1c1c1c;
+    color: #ffd700;
+  }
+  
+  /* Carousel */
+  .carousel-inner img {
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  /* Dropdown Menu */
+  .dropdown-menu {
+    background-color: #1c1c1c;
+    border-color: #ffd700;
+  }
+  
+  .dropdown-item {
+    color: #eaeaea;
+    transition: background-color 0.3s;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #ffd700;
+    color: #1c1c1c;
+  }
+  
+  /* Center the search bar on the carousel */
+.carousel-search-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    background-color: #eaeaea;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 60%; /* Adjust width as needed */
+    max-width: 600px;
+}
+
+.location-icon, .location-text {
+    color: #ff5656; /* Adjust color if needed */
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.location-icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+.location-text {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+    padding: 0.5rem;
+    background-color: transparent;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+/* Adjust for different screen sizes */
+@media (max-width: 768px) {
+    .carousel-search-bar {
+        width: 90%;
+        padding: 0.4rem 0.8rem;
+    }
+}
+/* Navbar should have a higher z-index to stay on top */
+.navbar {
+    position: relative; /* Ensure navbar positioning is well-defined */
+    z-index: 10; /* Set higher than the search bar's z-index */
+}
+
+/* Center the search bar on the carousel */
+.carousel-search-bar {
+    position: absolute;
+    top: 55%; /* Move slightly down to avoid overlap with navbar */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    background-color: #eaeaea;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 60%; /* Adjust width as needed */
+    max-width: 600px;
+    z-index: 5; /* Lower z-index to stay below navbar */
+}
+
+.location-icon, .location-text {
+    color: #ff5656; /* Adjust color if needed */
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.location-icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+.location-text {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+    padding: 0.5rem;
+    background-color: transparent;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+/* Adjust for different screen sizes */
+@media (max-width: 768px) {
+    .carousel-search-bar {
+        top: 60%; /* Lower the search bar on smaller screens */
+        width: 90%;
+        padding: 0.4rem 0.8rem;
+    }
+}
+/* Navbar - Ensure it has a higher z-index */
+.navbar {
+    position: relative;
+    z-index: 20; /* Set higher than the search bar */
+}
+
+/* Center and adjust position of the search bar */
+.carousel-search-bar {
+    position: absolute;
+    top: 65%; /* Lower to avoid overlap with navbar */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    background-color: #eaeaea;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 60%;
+    max-width: 600px;
+    z-index: 5; /* Lower than the navbar's z-index */
+}
+
+.location-icon, .location-text {
+    color: #ff5656;
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.location-icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+.location-text {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+    padding: 0.5rem;
+    background-color: transparent;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-search-bar {
+        top: 70%; /* Lower on smaller screens */
+        width: 90%;
+        padding: 0.4rem 0.8rem;
+    }
+}
+

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Restaurants</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* General body styles */
+    body {
+      background-color: #0D1B2A;  /* Dark background */
+      color: #EAEAEA;             /* Light gray text */
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      background-color: #1E2A37;
+    }
+
+    .navbar-brand {
+      color: #FFD700;              /* Gold color for the brand name */
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    .navbar-nav .nav-link {
+      color: #EAEAEA;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #FFD700;
+    }
+
+    /* Search Section Styling */
+    .search-section {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #1E2A37;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-section h2 {
+      color: #FFD700;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      width: 100%;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #34495E;
+      color: #EAEAEA;
+      border: 1px solid #34495E;
+      font-size: 1.1rem;
+    }
+
+    .search-bar:focus {
+      border-color: #FFD700;
+      outline: none;
+    }
+
+    /* Filter Section */
+    .filter-section {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .filter-section select,
+    .filter-section button {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* Results Section */
+    .results-section {
+      margin-top: 30px;
+    }
+
+    /* Restaurant Card */
+    .restaurant-card {
+      background-color: #34495E;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .restaurant-card:hover {
+      transform: scale(1.05);
+    }
+
+    .restaurant-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .restaurant-card-body {
+      padding: 15px;
+    }
+
+    .restaurant-name {
+      color: #FFD700;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .restaurant-description {
+      color: #EAEAEA;
+      margin-bottom: 10px;
+    }
+
+    .restaurant-price,
+    .restaurant-rating {
+      color: #FFD700;
+    }
+
+    /* Responsive Layout */
+    @media (max-width: 768px) {
+      .restaurant-card {
+        margin-bottom: 10px;
+      }
+
+      .search-section {
+        padding: 10px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">DealFinder</a>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="search-section">
+    <!-- Search Title -->
+    <h2>Search for Restaurants</h2>
+
+    <!-- Search Bar -->
+    <input type="text" class="search-bar" id="searchInput" placeholder="Search for a restaurant...">
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <select class="form-select" id="filterRating">
+        <option selected>Filter by Rating</option>
+        <option value="1">1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+      </select>
+      <select class="form-select" id="filterPrice">
+        <option selected>Filter by Price</option>
+        <option value="1">Low to High</option>
+        <option value="2">High to Low</option>
+      </select>
+      <button class="btn btn-primary">Apply Filters</button>
+    </div>
+
+    <!-- Search Results Section -->
+    <div class="results-section">
+      <div class="row" id="resultsList">
+        <!-- Example Restaurant Cards (dynamically filled) -->
+        <div class="col-md-4">
+          <div class="card restaurant-card">
+            <img src="https://via.placeholder.com/300x200" class="restaurant-img" alt="Restaurant 1">
+            <div class="restaurant-card-body">
+              <h5 class="restaurant-name">Pizza Place</h5>
+              <p class="restaurant-description">Delicious pizza with a variety of toppings.</p>
+              <p class="restaurant-price">$20</p>
+              <p class="restaurant-rating">Rating: 4.5/5</p>
+              <button class="btn btn-primary">Order Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card restaurant-card">
+            <img src="https://via.placeholder.com/300x200" class="restaurant-img" alt="Restaurant 2">
+            <div class="restaurant-card-body">
+              <h5 class="restaurant-name">Sushi Haven</h5>
+              <p class="restaurant-description">Fresh sushi made with organic ingredients.</p>
+              <p class="restaurant-price">$25</p>
+              <p class="restaurant-rating">Rating: 4.8/5</p>
+              <button class="btn btn-primary">Order Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card restaurant-card">
+            <img src="https://via.placeholder.com/300x200" class="restaurant-img" alt="Restaurant 3">
+            <div class="restaurant-card-body">
+              <h5 class="restaurant-name">Vegan Delight</h5>
+              <p class="restaurant-description">Tasty vegan meals with lots of flavor.</p>
+              <p class="restaurant-price">$15</p>
+              <p class="restaurant-rating">Rating: 5/5</p>
+              <button class="btn btn-primary">Order Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include Bootstrap JS, jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Search suggestions as user types
+  $('#searchInput').on('input', function() {
+    const searchQuery = $(this).val().toLowerCase();
+    if (searchQuery) {
+      $('#resultsList').html(`
+        <div class="col-md-4">
+          <div class="card restaurant-card">
+            <img src="https://via.placeholder.com/300x200" class="restaurant-img" alt="Restaurant">
+            <div class="restaurant-card-body">
+              <h5 class="restaurant-name">Sample Restaurant</h5>
+              <p class="restaurant-description">Description matching search: ${searchQuery}</p>
+              <p class="restaurant-price">$20</p>
+              <p class="restaurant-rating">Rating: 4.5/5</p>
+              <button class="btn btn-primary">Order Now</button>
+            </div>
+          </div>
+        </div>
+      `);
+    } else {
+      // Reset to initial state
+      $('#resultsList').html(`
+        <div class="col-md-4">
+          <div class="card restaurant-card">
+            <img src="https://via.placeholder.com/300x200" class="restaurant-img" alt="Restaurant 1">
+            <div class="restaurant-card-body">
+              <h5 class="restaurant-name">Pizza Place</h5>
+              <p class="restaurant-description">Delicious pizza with a variety of toppings.</p>
+              <p class="restaurant-price">$20</p>
+              <p class="restaurant-rating">Rating: 4.5/5</p>
+              <button class="btn btn-primary">Order Now</button>
+            </div>
+          </div>
+        </div>
+      `);
+    }
+  });
+</script>
+
+</body>
+</html>
