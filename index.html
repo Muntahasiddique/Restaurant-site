@@ -62,52 +62,94 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg bg-transparent position-fixed w-100 z-index-2">
             <div class="container-fluid">
-                <a class="navbar-brand text-light" href="#">Cafe Delights</a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Browse Restaurants
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">All Restaurants</a></li>
-                                <li><a class="dropdown-item" href="#">Select City</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Deals
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Featured Deals</a></li>
-                                <li><a class="dropdown-item" href="#">Trending Deals</a></li>
-                                <li><a class="dropdown-item" href="#">Comparison Tool</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#">Cart & Orders</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Profile
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">View Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Orders</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#">Login / Signup</a></li>
+              <a class="navbar-brand text-light" href="index.html"><i class="fa-solid fa-utensils"></i>DishDeals</a>
+          
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+              <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <!-- Home -->
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                  </li>
+          
+                  <!-- Browse Restaurants -->
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Browse Restaurants
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="search.html">All Restaurants</a></li>
+                      <li><a class="dropdown-item" href="location.html">Select City</a></li>
                     </ul>
-                  
-                </div>
+                  </li>
+          
+                  <!-- Deals -->
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Deals
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="Trending.html">Trending Deals</a></li>
+                      <li><a class="dropdown-item" href="Comparison.html">Comparison Tool</a></li>
+                      <li><a class="dropdown-item" href="favourite.html">Featured Deals</a></li>
+                    </ul>
+                  </li>
+          
+                  <!-- Cart & Orders -->
+                  <li class="nav-item">
+                    <a class="nav-link" href="usercart.html">Cart & Orders</a>
+                  </li>
+          
+                  <!-- Profile -->
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Profile
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="profile.html">View Profile</a></li>
+                      <li><a class="dropdown-item" href="trakorder.html">Orders</a></li>
+                      <li><a class="dropdown-item" href="Login.html">Logout</a></li>
+                    </ul>
+                  </li>
+          
+                  <!-- Login / Signup -->
+                  <li class="nav-item">
+                    <a class="nav-link" href="Login.html">Login / Signup</a>
+                  </li>
+                </ul>
+              </div>
             </div>
-        </nav>
+          </nav>
+          
 
         <!-- Carousel -->
         <div class="carosualdiv">
@@ -118,7 +160,7 @@
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active"><img src="images/2ndimg.jpg" class="d-block w-100" alt="..."></div>
+                    <div class="carousel-item active"><img src="images/carousal.jpg" class="d-block w-100" alt="..."></div>
                     <div class="carousel-item"><img src="images/1stimage.jpg" class="d-block w-100" alt="..."></div>
                     <div class="carousel-item"><img src="images/1stimage.jpg" class="d-block w-100" alt="..."></div>
                 </div>
@@ -130,10 +172,57 @@
                 </div>
             </div>
         </div>
-        <div class="Qr-sacn">
-<img src="images/qrphone.png" alt="">
-        </div>
     </div>
+    <!-- footer -->
+    <footer>
+      <div class="footer-container">
+        <!-- About Section -->
+        <div class="footer-about">
+          <h3><i class="fa-solid fa-utensils"></i> DishDeals</h3>
+          <p>
+            Discover the best restaurants, exclusive deals, and trending cuisines in your city. Your dining experience made exceptional!
+          </p>
+          <form class="signup-form">
+            <input type="email" placeholder="Enter your email" />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+    
+        <!-- Contact Section -->
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p><i class="fa-solid fa-location-dot"></i> 123 Street, New York, USA</p>
+          <p><i class="fa-solid fa-phone"></i> +012 345 6789</p>
+          <p><i class="fa-solid fa-envelope"></i> info@example.com</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+    
+        <!-- Quick Links -->
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="search.html">Restaurants</a></li>
+            <li><a href="Trending.html">Trending Deals</a></li>
+            <li><a href="usercart.html">Cart & Orders</a></li>
+            <li><a href="Login.html">Login / Signup</a></li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="footer-bottom">
+        <p>
+          © 2024 <a href="index.html">DishDeals</a>. All Rights Reserved. Designed with ❤️ by Your Team.
+        </p>
+      </div>
+    </footer>
+    
 </div>
 </body>
 </html>
